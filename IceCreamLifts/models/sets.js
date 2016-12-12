@@ -1,0 +1,45 @@
+const db = require('../lib/db');
+
+function getCurrentSets(req, res, next) {
+  db.many('SELECT * FROM sets WHERE user_id = ($/u/) AND wkt_date = ($/d/) AND wkt_num = ($/n/);',
+    req.body)
+    .then((currentSets) => {
+      res.currentSets = currentSets
+      next();
+    })
+  .catch(error => console.log(error))
+}
+
+function createSetsA(req, res, next) {
+  db.none("INSERT INTO sets(ex,max,comp,weight,wkt_date,user_id,wkt_num) VALUES('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/);",
+    req.body)
+    .then( () => {
+      next();
+    })
+  .catch(error => console.log(error));
+};
+
+function createSetsB(req, res, next) {
+  db.none("INSERT INTO sets(ex,max,comp,weight,wkt_date,user_id,wkt_num) VALUES('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('D',5,0,$/D/,$/d/,$/u/,$/n/),('O',5,0,$/O/,$/d/,$/u/,$/n/),('O',5,0,$/O/,$/d/,$/u/,$/n/),('O',5,0,$/O/,$/d/,$/u/,$/n/),('O',5,0,$/O/,$/d/,$/u/,$/n/),('O',5,0,$/O/,$/d/,$/u/,$/n/),('BR',5,0,$/BR/,$/d/,$/u/,$/n/),('BR',5,0,$/BR/,$/d/,$/u/,$/n/),('BR',5,0,$/BR/,$/d/,$/u/,$/n/),('BR',5,0,$/BR/,$/d/,$/u/,$/n/),('BR',5,0,$/BR/,$/d/,$/u/,$/n/),('G',8,0,$/G/,$/d/,$/u/,$/n/),('G',8,0,$/G/,$/d/,$/u/,$/n/),('G',8,0,$/G/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/);",
+    req.body)
+    .then( () => {
+      next();
+    })
+  .catch(error => console.log(error));
+};
+
+function incrementSet(req, res, next) {
+  db.none("UPDATE sets SET comp = sets.comp + 1 WHERE set_id = $/set_id/;",
+    req.body)
+    .then( () => {
+      next();
+    })
+  .catch(error => console.log(error));
+};
+
+module.exports = {
+  getCurrentSets,
+  createSetsA,
+  createSetsB,
+  incrementSet,
+}
