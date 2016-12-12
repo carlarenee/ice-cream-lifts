@@ -1,0 +1,43 @@
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
+export default class SignupSuccess extends Component {
+
+  render() {
+    return(
+      <View style={styles.container}>
+        <Text style={styles.largeWords}>Signup Success!</Text>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  largeWords: {
+    fontSize: 20,
+  },
+  enterInfo: {
+    margin: 10,
+    height: 50,
+    width: 240,
+    alignSelf: 'center',
+    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: 'grey'
+  },
+  goWords: {
+    fontSize: 40,
+    width: 240,
+    textAlign: 'center',
+    backgroundColor: '#addfad',
+  }
+})

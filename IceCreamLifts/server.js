@@ -11,7 +11,9 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 
-const apiRouter = require('./routes/api.js')
-app.use('/api', apiRouter)
+const apiRouter = require('./routes/api.js');
+const userRouter = require('./routes/user.js');
+app.use('/api', apiRouter);
+app.use('/user', userRouter);
 
 app.listen(PORT, () => {console.log('free hugs at port', PORT)});

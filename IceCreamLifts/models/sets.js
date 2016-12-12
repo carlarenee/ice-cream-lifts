@@ -1,5 +1,14 @@
 const db = require('../lib/db');
 
+function getAllSets(req, res, next) {
+  db.many('SELECT * FROM sets')
+    .then(allSets => {
+      res.allSets = allSets
+      next();
+    })
+  .catch(error => console.log(error))
+}
+
 function getCurrentSets(req, res, next) {
   db.many('SELECT * FROM sets WHERE user_id = ($/u/) AND wkt_date = ($/d/) AND wkt_num = ($/n/);',
     req.body)
@@ -38,6 +47,7 @@ function incrementSet(req, res, next) {
 };
 
 module.exports = {
+  getAllSets,
   getCurrentSets,
   createSetsA,
   createSetsB,
