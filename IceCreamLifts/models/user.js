@@ -4,32 +4,32 @@ const bcrypt = require('bcryptjs');
 const salt = 10;
 
 function createUser(req, res, next) {
-  console.log(req.body)
-  if (req.body.password === req.body.confirmPassword) {
+  if (req.body.signupPassword === req.body.signupConfirm) {
     db.none('INSERT INTO users (username, password) VALUES ($1, $2);',
-      [req.body.username, bcrypt.hashSync(req.body.password, salt)])
+      [req.body.signupUsername, bcrypt.hashSync(req.body.signupPassword, salt)])
       .then( () => {
-        console.log('user created!')
+        res.signupResult = {signup: true}
         next()
       })
     .catch(error => console.log(error))
   } else {
+    res.signupResult = {signup: false}
     next();
     return;
   }
 }
 
 function authenticate(req, res, next) {
-  console.log(req.body.password)
-  db.one('SELECT * FROM users WHERE username = $/username/;', req.body)
+  db.one('SELECT * FROM users WHERE username = $/loginUsername/;', req.body)
     .then((data) => {
-      console.log(data.password)
-      const match = bcrypt.compareSync(req.body.password, data.password);
+      const match = bcrypt.compareSync(req.body.loginPassword, data.password);
       if (match) {
-        res.status(200)
+        res.loginResult = {login: true}
         next();
       } else {
-        res.status(500).send('fuck u fite me irl');
+        res.loginResult = {login: false}
+        next();
+        return
       }
     })
   .catch(error => console.log(error))

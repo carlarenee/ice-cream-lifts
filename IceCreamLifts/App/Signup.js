@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -11,9 +12,9 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
-      confirmPassword: ''
+      signupUpsername: '',
+      signupPassword: '',
+      signupConfirm: '',
     }
   }
 
@@ -25,14 +26,27 @@ export default class Signup extends Component {
         'content-type': 'Application/json'
       },
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword
+        signupUsername: this.state.signupUsername,
+        signupPassword: this.state.signupPassword,
+        signupConfirm: this.state.signupConfirm
       })
     })
     .then(r => r.json())
     .then( (data) => {
-      console.log('signup has been submitted', this.state, data)
+      console.log(data.signup)
+      if (data.signup === true) {
+        this.props.navigator.push({
+          id: 'Setup'
+        })
+      } else {
+        Alert.alert(
+          'Whoops!',
+          'Passwords do not match.',
+          [
+            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
+          ]
+        )
+      }
     })
   }
 
@@ -43,22 +57,22 @@ export default class Signup extends Component {
           Username:
         </Text>
         <TextInput style={styles.enterInfo}
-          value={this.state.username}
-          onChangeText={(username) => this.setState({username})}
+          value={this.state.signupUsername}
+          onChangeText={(signupUsername) => this.setState({ signupUsername })}
         />
         <Text style={styles.largeWords}>
           Password:
         </Text>
         <TextInput style={styles.enterInfo}
-          value={this.state.password}
-          onChangeText={(password) => this.setState({password})}
+          value={this.state.signupPassword}
+          onChangeText={(signupPassword) => this.setState({ signupPassword })}
         />
         <Text style={styles.largeWords}>
           Confirm Password:
         </Text>
         <TextInput style={styles.enterInfo}
-          value={this.state.confirmPassword}
-          onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+          value={this.state.signupConfirm}
+          onChangeText={(signupConfirm) => this.setState({ signupConfirm })}
         />
         <TouchableHighlight onPress={this.onSignupSubmit.bind(this)}>
           <Text style={styles.goWords}>

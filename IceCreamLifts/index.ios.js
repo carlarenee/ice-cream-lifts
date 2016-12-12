@@ -10,8 +10,7 @@ import {
 import LoginSignup from './App/LoginSignup'
 import Login from './App/Login'
 import Signup from './App/Signup'
-import LoggedIn from './App/LoggedIn'
-import TryAgain from './App/TryAgain'
+import Setup from './App/Setup'
 
 export default class IceCreamLifts extends Component {
 
@@ -24,6 +23,8 @@ export default class IceCreamLifts extends Component {
         return (<Login navigator={navigator} title={'Login'} />)
       case 'Signup':
         return (<Signup navigator={navigator} title={'Signup'} />)
+      case 'Setup':
+        return (<Setup navigator={navigator} title={'Setup'} />)
     }
   }
 

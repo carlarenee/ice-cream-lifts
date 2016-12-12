@@ -5,12 +5,12 @@ import {
   View
 } from 'react-native';
 
-export default class Signup extends Component {
+export default class SignupSuccess extends Component {
 
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.largeWords}>Logged in!</Text>
+        <Text style={styles.largeWords}>Signup Success!</Text>
       </View>
     )
   }
