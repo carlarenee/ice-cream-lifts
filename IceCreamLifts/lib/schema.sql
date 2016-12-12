@@ -13,4 +13,10 @@ CREATE TABLE sets (
   wkt_num INT NOT NULL
 );
 
+CREATE TABLE users(
+  user_id SERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL UNIQUE,
+  password VARCHAR NOT NULL UNIQUE
+);
+
 COMMIT;
