@@ -13,7 +13,9 @@ export default class Login extends Component {
     super(props);
     this.state = {
       loginUsername: '',
-      loginPassword: ''
+      loginPassword: '',
+      loggedInUser: '',
+      totalWorkouts: 0,
     }
   }
 
@@ -30,9 +32,17 @@ export default class Login extends Component {
     })
     .then(r => r.json())
     .then( (data) => {
-      if (data.login === true) {
+      if (!data.failed) {
         this.props.navigator.push({
-          id: 'Setup'
+          id: 'FirstWorkout'
+        });
+        this.setState({
+          loginUsername: '',
+          loginPassword: '',
+          loggedInUser: data.username,
+          totalWorkouts: data.total_workouts
+        }, () => {
+          console.log(this.state)
         })
       } else {
         Alert.alert(
@@ -63,7 +73,7 @@ export default class Login extends Component {
           value={this.state.loginPassword}
           onChangeText={(loginPassword) => this.setState({ loginPassword })}
         />
-        <TouchableHighlight onPress={this.onLoginSubmit.bind(this)}>
+        <TouchableHighlight onPress={this.props.onLoginSubmit}>
           <Text style={styles.goWords}>
             Go!
           </Text>

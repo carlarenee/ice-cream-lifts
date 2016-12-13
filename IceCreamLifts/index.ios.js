@@ -11,6 +11,7 @@ import LoginSignup from './App/LoginSignup'
 import Login from './App/Login'
 import Signup from './App/Signup'
 import Setup from './App/Setup'
+import FirstWorkout from './App/FirstWorkout'
 
 export default class IceCreamLifts extends Component {
 
@@ -25,6 +26,8 @@ export default class IceCreamLifts extends Component {
         return (<Signup navigator={navigator} title={'Signup'} />)
       case 'Setup':
         return (<Setup navigator={navigator} title={'Setup'} />)
+      case 'FirstWorkout':
+        return (<FirstWorkout navigator={navigator} title={'FirstWorkout'} />)
     }
   }
 
