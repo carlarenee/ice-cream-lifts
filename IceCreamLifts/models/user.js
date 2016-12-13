@@ -20,6 +20,7 @@ function createUser(req, res, next) {
 }
 
 function authenticate(req, res, next) {
+  console.log(req.body)
   db.one('SELECT * FROM users WHERE username = $/loginUsername/;', req.body)
     .then((data) => {
       const match = bcrypt.compareSync(req.body.loginPassword, data.password);
@@ -35,7 +36,17 @@ function authenticate(req, res, next) {
   .catch(error => console.log(error))
 }
 
+function incrementTotalWorkouts(req, res, next) {
+  console.log(req.body)
+  db.none('UPDATE users SET total_workouts = $/total_workouts/ WHERE users.user_id = $/user_id/;', req.body)
+    .then( () => {
+      next();
+    })
+  .catch(error => console.log(error))
+}
+
 module.exports = {
   createUser,
   authenticate,
+  incrementTotalWorkouts
 }
