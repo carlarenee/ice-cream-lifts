@@ -13,37 +13,10 @@ export default class Login extends Component {
     super(props);
     this.state = {
       loginUsername: '',
-      loginPassword: ''
+      loginPassword: '',
+      loggedInUser: '',
+      totalWorkouts: 0,
     }
-  }
-
-  onLoginSubmit() {
-    return fetch('http://localhost:3000/user/login', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        loginUsername: this.state.loginUsername,
-        loginPassword: this.state.loginPassword
-      })
-    })
-    .then(r => r.json())
-    .then( (data) => {
-      if (data.login === true) {
-        this.props.navigator.push({
-          id: 'Setup'
-        })
-      } else {
-        Alert.alert(
-          'Whoops!',
-          'Password incorrect.',
-          [
-            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
-          ]
-        )
-      }
-    })
   }
 
   render() {
@@ -63,7 +36,7 @@ export default class Login extends Component {
           value={this.state.loginPassword}
           onChangeText={(loginPassword) => this.setState({ loginPassword })}
         />
-        <TouchableHighlight onPress={this.onLoginSubmit.bind(this)}>
+        <TouchableHighlight onPress={this.props.onLoginSubmit}>
           <Text style={styles.goWords}>
             Go!
           </Text>
