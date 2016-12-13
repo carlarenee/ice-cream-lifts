@@ -5,8 +5,8 @@ const salt = 10;
 
 function createUser(req, res, next) {
   if (req.body.signupPassword === req.body.signupConfirm) {
-    db.none('INSERT INTO users (username, password) VALUES ($1, $2);',
-      [req.body.signupUsername, bcrypt.hashSync(req.body.signupPassword, salt)])
+    db.none('INSERT INTO users (username, password, total_workouts) VALUES ($1, $2, $3);',
+      [req.body.signupUsername, bcrypt.hashSync(req.body.signupPassword, salt), 0])
       .then( () => {
         res.signupResult = {signup: true}
         next()
@@ -24,10 +24,10 @@ function authenticate(req, res, next) {
     .then((data) => {
       const match = bcrypt.compareSync(req.body.loginPassword, data.password);
       if (match) {
-        res.loginResult = {login: true}
+        res.loginResult = data
         next();
       } else {
-        res.loginResult = {login: false}
+        res.loginResult = {failed: "failed"}
         next();
         return
       }

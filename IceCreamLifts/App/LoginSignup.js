@@ -27,7 +27,7 @@ export default class LoginSignup extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.onLoginPress.bind(this)}>
+        <TouchableHighlight onPress={() => this.onLoginPress()}>
           <Text style={styles.largeWords}>
             Login
           </Text>

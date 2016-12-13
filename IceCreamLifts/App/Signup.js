@@ -36,7 +36,7 @@ export default class Signup extends Component {
       console.log(data.signup)
       if (data.signup === true) {
         this.props.navigator.push({
-          id: 'Setup'
+          id: 'Setup',
         })
       } else {
         Alert.alert(
