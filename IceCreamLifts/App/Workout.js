@@ -21,22 +21,18 @@ export default class Workout extends Component {
     super(props)
   }
 
-
   componentDidMount() {
     console.log('mounted', this.props.currentSets)
     this.props.getCurrentSets();
   };
 
-  renderS(weight) {
-    console.log('yo', this.props)
+  renderS() {
     const squats = this.props.currentSets.filter((set) => {
       return set.ex === 'S'
     });
     return squats.map((set, index) => {
       return(
         <View key={index}>
-          <Text>Squats</Text>
-          <Text>{weight}</Text>
           <Squat
             ex={'Squat'}
             max={set.max}
@@ -47,6 +43,8 @@ export default class Workout extends Component {
             wkt_num={set.wkt_num}
             length={squats.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -61,14 +59,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <ARow
-            ex={set.ex}
+            ex={'Row A'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={ARows.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -83,14 +84,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Shrug
-            ex={set.ex}
+            ex={'Shrug'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={shrugs.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -105,14 +109,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Tri
-            ex={set.ex}
+            ex={'Tris'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={tris.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -127,14 +134,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Curl
-            ex={set.ex}
+            ex={'Curls'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={curls.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -149,14 +159,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Bench
-            ex={set.ex}
+            ex={'Bench'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={benches.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -171,14 +184,17 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Crunch
-            ex={set.ex}
+            ex={'Cable Crunches'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={crunches.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -200,7 +216,10 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={hypers.length}
             set_id={set.set_id}
+            set_num={index}
+            incrementRep={this.props.incrementRep}
           />
         </View>
       )
@@ -213,57 +232,73 @@ export default class Workout extends Component {
         <View style={styles.topNav}></View>
         <ScrollView style={styles.scrollBox}>
           <View>
-            <Text>Squat</Text>
-            <Text>{this.props.weights.squatWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Squats: 5x5</Text>
+              <Text style={styles.largeWords}>{this.props.weights.squatWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderS()}
             </View>
           </View>
           <View>
-            <Text>Bench</Text>
-            <Text>{this.props.weights.benchWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Bench: 5x5</Text>
+              <Text style={styles.largeWords}>{this.props.weights.benchWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderP()}
             </View>
           </View>
           <View>
-            <Text>Rows</Text>
-            <Text>{this.props.weights.aRowWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Rows: 5x5</Text>
+              <Text style={styles.largeWords}>{this.props.weights.aRowWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderAR()}
             </View>
           </View>
           <View>
-            <Text>Curls</Text>
-            <Text>{this.props.weights.curlWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Curls: 3x8</Text>
+              <Text style={styles.largeWords}>{this.props.weights.curlWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderI()}
             </View>
           </View>
           <View>
-            <Text>Tris</Text>
-            <Text>{this.props.weights.triWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Tris: 3x8</Text>
+              <Text style={styles.largeWords}>{this.props.weights.triWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderT()}
             </View>
           </View>
           <View>
-            <Text>Shrugs</Text>
-            <Text>{this.props.weights.shrugWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Shrug: 3x8</Text>
+              <Text style={styles.largeWords}>{this.props.weights.shrugWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderB()}
             </View>
           </View>
           <View>
-            <Text>Crunches</Text>
-            <Text>{this.props.weights.crunchWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Cable Crunches: 2x10</Text>
+              <Text style={styles.largeWords}>{this.props.weights.crunchWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderC()}
             </View>
           </View>
           <View>
-            <Text>Hyper</Text>
-            <Text>{this.props.weights.HyperWeight}</Text>
+            <View style={styles.exerciseHeader}>
+              <Text style={styles.largeWords}>Hyperextensions: 2x10</Text>
+              <Text style={styles.largeWords}>{this.props.weights.hyperWeight} lbs.</Text>
+            </View>
             <View style={styles.exercise}>
               {this.renderH()}
             </View>
@@ -295,6 +330,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: 150,
+  },
+  exerciseHeader: {
+    height: 50,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 })

@@ -11,7 +11,7 @@ function getAllSets(req, res, next) {
 
 function getCurrentSets(req, res, next) {
   console.log(req.body)
-  db.many('SELECT * FROM sets WHERE username = $/username/ AND wkt_date = $/wkt_date/;',
+  db.many('SELECT * FROM sets WHERE username = $/username/ AND wkt_date = $/wkt_date/ ORDER BY set_id ASC;',
     req.body)
     .then((currentSets) => {
       res.currentSets = currentSets
@@ -40,8 +40,9 @@ function createSetsB(req, res, next) {
 };
 
 function incrementSet(req, res, next) {
-  db.none("UPDATE sets SET comp = sets.comp + 1 WHERE set_id = $/set_id/;",
-    req.body)
+  console.log(req.params)
+  db.none("UPDATE sets SET comp = sets.comp + 1 WHERE set_id = $1;",
+    [req.params.id])
     .then( () => {
       next();
     })
