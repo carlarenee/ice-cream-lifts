@@ -9,7 +9,7 @@ CREATE TABLE sets (
   comp INT NOT NULL DEFAULT 0,
   weight INT NOT NULL,
   wkt_date DATE NOT NULL,
-  user_id INT NOT NULL,
+  username VARCHAR NOT NULL,
   wkt_num INT NOT NULL
 );
 

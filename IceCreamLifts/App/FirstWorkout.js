@@ -8,9 +8,9 @@ import {
 
 export default class FirstWorkout extends Component {
 
-  moveToWorkout() {
+  moveToWorkout(scene) {
     this.props.navigator.push({
-      id: 'Workout'
+      id: scene
     })
   }
 
@@ -18,7 +18,7 @@ export default class FirstWorkout extends Component {
     return(
       <View style={styles.container}>
         <Text style={styles.largeWords}>You don't have any workouts yet!</Text>
-        <TouchableHighlight onPress={this.props.createWorkout(moveToWorkout)}>
+        <TouchableHighlight onPress={() => this.props.createWorkout(this.moveToWorkout.bind(this))}>
           <Text style={styles.goWords}>Tap here to begin!</Text>
         </TouchableHighlight>
       </View>

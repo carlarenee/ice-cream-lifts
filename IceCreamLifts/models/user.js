@@ -38,7 +38,7 @@ function authenticate(req, res, next) {
 
 function incrementTotalWorkouts(req, res, next) {
   console.log(req.body)
-  db.none('UPDATE users SET total_workouts = $/total_workouts/ WHERE users.user_id = $/user_id/;', req.body)
+  db.none('UPDATE users SET total_workouts = $/total_workouts/ WHERE username = $/username/;', req.body)
     .then( () => {
       next();
     })
