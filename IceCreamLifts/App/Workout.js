@@ -17,27 +17,36 @@ import Squat from './Exercises/Squat';
 import Tri from './Exercises/Tri';
 
 export default class Workout extends Component {
+  constructor(props) {
+    super(props)
+  }
+
 
   componentDidMount() {
-    console.log('mounted')
+    console.log('mounted', this.props.currentSets)
     this.props.getCurrentSets();
   };
 
-  renderS() {
+  renderS(weight) {
+    console.log('yo', this.props)
     const squats = this.props.currentSets.filter((set) => {
       return set.ex === 'S'
     });
     return squats.map((set, index) => {
       return(
         <View key={index}>
+          <Text>Squats</Text>
+          <Text>{weight}</Text>
           <Squat
-            ex={set.ex}
+            ex={'Squat'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            length={squats.length}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -59,6 +68,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -80,6 +90,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -101,6 +112,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -122,6 +134,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -143,6 +156,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -164,6 +178,7 @@ export default class Workout extends Component {
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -178,13 +193,14 @@ export default class Workout extends Component {
       return(
         <View key={index}>
           <Hyper
-            ex={set.ex}
+            ex={'Hyperextension'}
             max={set.max}
             comp={set.comp}
             weight={set.weight}
             wkt_date={set.wkt_date}
             username={set.username}
             wkt_num={set.wkt_num}
+            set_id={set.set_id}
           />
         </View>
       )
@@ -196,29 +212,61 @@ export default class Workout extends Component {
       <View style={styles.container}>
         <View style={styles.topNav}></View>
         <ScrollView style={styles.scrollBox}>
-          <View style={styles.exercise}>
-            {this.renderS()}
+          <View>
+            <Text>Squat</Text>
+            <Text>{this.props.weights.squatWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderS()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderP()}
+          <View>
+            <Text>Bench</Text>
+            <Text>{this.props.weights.benchWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderP()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderAR()}
+          <View>
+            <Text>Rows</Text>
+            <Text>{this.props.weights.aRowWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderAR()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderI()}
+          <View>
+            <Text>Curls</Text>
+            <Text>{this.props.weights.curlWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderI()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderT()}
+          <View>
+            <Text>Tris</Text>
+            <Text>{this.props.weights.triWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderT()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderB()}
+          <View>
+            <Text>Shrugs</Text>
+            <Text>{this.props.weights.shrugWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderB()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderC()}
+          <View>
+            <Text>Crunches</Text>
+            <Text>{this.props.weights.crunchWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderC()}
+            </View>
           </View>
-          <View style={styles.exercise}>
-            {this.renderH()}
+          <View>
+            <Text>Hyper</Text>
+            <Text>{this.props.weights.HyperWeight}</Text>
+            <View style={styles.exercise}>
+              {this.renderH()}
+            </View>
           </View>
         </ScrollView>
         <View style={styles.botNav}></View>

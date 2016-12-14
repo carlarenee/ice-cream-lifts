@@ -20,7 +20,16 @@ export default class IceCreamLifts extends Component {
     super(props)
 
     this.state= {
-      currentSets: []
+      currentSets: [],
+      weights: {
+        squatWeight: 0,
+        benchWeight: 0,
+        aRowWeight: 0,
+        crunchWeight: 0,
+        curlWeight: 0,
+        triWeight: 0,
+        hyperWeight: 0
+      }
     }
   }
 
@@ -166,13 +175,61 @@ export default class IceCreamLifts extends Component {
     })
     .then(r => r.json())
     .then((data) => {
+      let squatWeight = 0;
+      let aRowWeight = 0;
+      let benchWeight = 0;
+      let shrugWeight = 0;
+      let triWeight = 0;
+      let hyperWeight = 0;
+      let curlWeight = 0;
+      let crunchWeight = 0;
+
+      for(let i = 0; i < data.length; i++) {
+        if (data[i].ex === 'S') {
+          squatWeight = data[i].weight
+        }
+        if (data[i].ex === 'AR') {
+          aRowWeight = data[i].weight
+        }
+        if (data[i].ex === 'P') {
+          benchWeight = data[i].weight
+        }
+        if (data[i].ex === 'B') {
+          shrugWeight = data[i].weight
+        }
+        if (data[i].ex === 'T') {
+          triWeight = data[i].weight
+        }
+        if (data[i].ex === 'H') {
+          hyperWeight = data[i].weight
+        }
+        if (data[i].ex === 'C') {
+          crunchWeight = data[i].weight
+        }
+        if (data[i].ex === 'I') {
+          curlWeight = data[i].weight
+        }
+      }
       this.setState({
-        currentSets: data
+        currentSets: data,
+        weights: {
+          squatWeight: squatWeight,
+          benchWeight: benchWeight,
+          aRowWeight: aRowWeight,
+          crunchWeight: crunchWeight,
+          curlWeight: curlWeight,
+          triWeight: triWeight,
+          hyperWeight: hyperWeight
+        }
       })
     })
     .then( () => {
       console.log(this.state)
     })
+  }
+
+  makeWeightState() {
+
   }
 
   handleLoginUsername(text) {
@@ -264,6 +321,7 @@ export default class IceCreamLifts extends Component {
                   title={'Workout'}
                   getCurrentSets={this.getCurrentSets.bind(this)}
                   currentSets={this.state.currentSets}
+                  weights={this.state.weights}
                 />
               )
             }

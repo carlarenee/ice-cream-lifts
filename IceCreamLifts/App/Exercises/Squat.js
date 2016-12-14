@@ -10,7 +10,12 @@ export default class Squat extends Component {
   render() {
     return(
       <View>
-        <Text style={styles.setBox}>{this.props.comp}</Text>
+        <View>
+          <Text>{this.props.length}</Text>
+        </View>
+        <View>
+          <Text style={styles.setBox}>{this.props.comp}</Text>
+        </View>
       </View>
     )
   }
