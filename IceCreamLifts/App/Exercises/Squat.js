@@ -5,12 +5,12 @@ import {
   View
 } from 'react-native';
 
-export default class NAMEGOESHERE extends Component {
+export default class Squat extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
-        <Text style={styles.largeWords}>Workout</Text>
+      <View>
+        <Text style={styles.largeWords}>{this.props.ex}</Text>
       </View>
     )
   }

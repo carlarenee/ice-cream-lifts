@@ -10,7 +10,8 @@ function getAllSets(req, res, next) {
 }
 
 function getCurrentSets(req, res, next) {
-  db.many('SELECT * FROM sets WHERE user_id = ($/u/) AND wkt_date = ($/d/) AND wkt_num = ($/n/);',
+  console.log(req.body)
+  db.many('SELECT * FROM sets WHERE username = $/username/ AND wkt_date = $/wkt_date/;',
     req.body)
     .then((currentSets) => {
       res.currentSets = currentSets
@@ -20,7 +21,8 @@ function getCurrentSets(req, res, next) {
 }
 
 function createSetsA(req, res, next) {
-  db.none("INSERT INTO sets(ex,max,comp,weight,wkt_date,user_id,wkt_num) VALUES('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/);",
+  console.log(req.body)
+  db.none("INSERT INTO sets(ex,max,comp,weight,wkt_date,username,wkt_num) VALUES('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('S',5,0,$/S/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('P',5,0,$/P/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('AR',5,0,$/AR/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('B',8,0,$/B/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('T',8,0,$/T/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('I',8,0,$/I/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('H',10,0,$/H/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/),('C',10,0,$/C/,$/d/,$/u/,$/n/);",
     req.body)
     .then( () => {
       next();

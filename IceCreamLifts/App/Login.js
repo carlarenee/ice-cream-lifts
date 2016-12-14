@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Alert,
+  InteractionManager,
   StyleSheet,
   Text,
   TextInput,
@@ -12,47 +13,14 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginUsername: '',
-      loginPassword: '',
-      loggedInUser: '',
-      totalWorkouts: 0,
+      loggedInUser: null,
+      totalWorkouts: null,
     }
   }
 
-  onLoginSubmit() {
-    return fetch('http://localhost:3000/user/login', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        loginUsername: this.state.loginUsername,
-        loginPassword: this.state.loginPassword
-      })
-    })
-    .then(r => r.json())
-    .then( (data) => {
-      if (!data.failed) {
-        this.props.navigator.push({
-          id: 'FirstWorkout'
-        });
-        this.setState({
-          loginUsername: '',
-          loginPassword: '',
-          loggedInUser: data.username,
-          totalWorkouts: data.total_workouts
-        }, () => {
-          console.log(this.state)
-        })
-      } else {
-        Alert.alert(
-          'Whoops!',
-          'Password incorrect.',
-          [
-            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
-          ]
-        )
-      }
+  renderAfterLogin(scene) {
+    this.props.navigator.push({
+      id: scene,
     })
   }
 
@@ -64,16 +32,16 @@ export default class Login extends Component {
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.loginUsername}
-          onChangeText={(loginUsername) => this.setState({ loginUsername })}
+          onChangeText={(loginUsername) => this.props.handleLoginUsername(loginUsername)}
         />
         <Text style={styles.largeWords}>
           Password:
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.loginPassword}
-          onChangeText={(loginPassword) => this.setState({ loginPassword })}
+          onChangeText={(loginPassword) => this.props.handleLoginPassword(loginPassword)}
         />
-        <TouchableHighlight onPress={this.props.onLoginSubmit}>
+        <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}}>
           <Text style={styles.goWords}>
             Go!
           </Text>

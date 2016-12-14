@@ -12,41 +12,15 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signupUpsername: '',
-      signupPassword: '',
-      signupConfirm: '',
+      signupUpsername: null,
+      signupPassword: null,
+      signupConfirm: null,
     }
   }
 
-  onSignupSubmit() {
-    console.log('onSignupSubmit launching')
-    return fetch('http://localhost:3000/user/signup', {
-      method: 'POST',
-      headers: {
-        'content-type': 'Application/json'
-      },
-      body: JSON.stringify({
-        signupUsername: this.state.signupUsername,
-        signupPassword: this.state.signupPassword,
-        signupConfirm: this.state.signupConfirm
-      })
-    })
-    .then(r => r.json())
-    .then( (data) => {
-      console.log(data.signup)
-      if (data.signup === true) {
-        this.props.navigator.push({
-          id: 'Setup'
-        })
-      } else {
-        Alert.alert(
-          'Whoops!',
-          'Passwords do not match.',
-          [
-            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
-          ]
-        )
-      }
+  renderAfterSignup(scene) {
+    this.props.navigator.push({
+      id: scene,
     })
   }
 
@@ -58,23 +32,23 @@ export default class Signup extends Component {
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupUsername}
-          onChangeText={(signupUsername) => this.setState({ signupUsername })}
+          onChangeText={(signupUsername) => this.props.handleSignupUsername(signupUsername)}
         />
         <Text style={styles.largeWords}>
           Password:
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupPassword}
-          onChangeText={(signupPassword) => this.setState({ signupPassword })}
+          onChangeText={(signupPassword) => this.props.handleSignupPassword(signupPassword)}
         />
         <Text style={styles.largeWords}>
           Confirm Password:
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupConfirm}
-          onChangeText={(signupConfirm) => this.setState({ signupConfirm })}
+          onChangeText={(signupConfirm) => this.props.handleSignupConfirm(signupConfirm)}
         />
-        <TouchableHighlight onPress={this.onSignupSubmit.bind(this)}>
+        <TouchableHighlight onPress={() => this.props.onSignupSubmit(this.renderAfterSignup.bind(this))}>
           <Text style={styles.goWords}>
             Go!
           </Text>
