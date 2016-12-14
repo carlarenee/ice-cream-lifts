@@ -196,30 +196,30 @@ export default class Workout extends Component {
       <View style={styles.container}>
         <View style={styles.topNav}></View>
         <ScrollView style={styles.scrollBox}>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          <View style={styles.exercise}>
             {this.renderS()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderP()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderAR()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderI()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderT()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderB()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderC()}
-          </ScrollView>
-          <ScrollView horizontal={true} style={styles.exercise}>
+          </View>
+          <View style={styles.exercise}>
             {this.renderH()}
-          </ScrollView>
+          </View>
         </ScrollView>
         <View style={styles.botNav}></View>
       </View>
@@ -243,6 +243,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   exercise: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     height: 150,
   }
 })

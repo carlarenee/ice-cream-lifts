@@ -10,7 +10,7 @@ export default class Shrug extends Component {
   render() {
     return(
       <View>
-        <Text style={styles.largeWords}>{this.props.ex}</Text>
+        <Text style={styles.setBox}>{this.props.comp}</Text>
       </View>
     )
   }
@@ -24,5 +24,10 @@ const styles = StyleSheet.create({
   },
   largeWords: {
     fontSize: 20,
+  },
+  setBox: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#addfad'
   }
 })
