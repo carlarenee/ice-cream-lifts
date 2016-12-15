@@ -19,3 +19,8 @@
 <ScrollView horizontal={true} style={styles.exercise}>
   {this.renderT()}
 </ScrollView>
+
+
+heroku pg:psql DATABASE_URL --app rocky-tor-16900
+
+heroku pg:psql --app rocky-tor-16900 ./lib/schema.sql
