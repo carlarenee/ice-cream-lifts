@@ -35,7 +35,7 @@ export default class IceCreamLifts extends Component {
 
   onSignupSubmit(renderAfterSignup) {
     console.log('onSignupSubmit launching')
-    return fetch('http://localhost:3000/user/signup', {
+    return fetch('https://getswolewithdan.herokuapp.com/user/signup', {
       method: 'POST',
       headers: {
         'content-type': 'Application/json'
@@ -75,7 +75,7 @@ export default class IceCreamLifts extends Component {
   }
 
   onLoginSubmit(renderAfterLogin) {
-  return fetch('http://localhost:3000/user/login', {
+  return fetch('https://getswolewithdan.herokuapp.com/user/login', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -122,7 +122,7 @@ export default class IceCreamLifts extends Component {
     if (this.state.totalWorkouts === 0) {
       const incrementedTotal = this.state.totalWorkouts + 1
       const username = this.state.loggedInUser
-      return fetch('http://localhost:3000/api/create/A', {
+      return fetch('https://getswolewithdan.herokuapp.com/api/create/A', {
         method: 'POST',
         headers: {
           'content-type': 'application/JSON'
@@ -150,7 +150,7 @@ export default class IceCreamLifts extends Component {
 
   incrementRep(id) {
     console.log('id inside incrementRep', id)
-    return fetch(`http://localhost:3000/api/sets/increment/${id}`, {
+    return fetch(`https://getswolewithdan.herokuapp.com/api/sets/increment/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/JSON',
@@ -162,7 +162,7 @@ export default class IceCreamLifts extends Component {
   }
 
   incrementTotalWorkouts(t, u) {
-    return fetch('http://localhost:3000/user/count', {
+    return fetch('https://getswolewithdan.herokuapp.com/user/count', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -176,7 +176,7 @@ export default class IceCreamLifts extends Component {
 
   getCurrentSets() {
     console.log('getting current sets!')
-    return fetch('http://localhost:3000/api/sets', {
+    return fetch('https://getswolewithdan.herokuapp.com/api/sets', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
