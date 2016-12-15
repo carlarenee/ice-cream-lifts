@@ -25,7 +25,7 @@ export default class Signup extends Component {
     this.props.navigator.push({
       id: scene,
     })
-  }
+  }d
 
   render() {
     return(
