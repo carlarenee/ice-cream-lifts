@@ -148,6 +148,19 @@ export default class IceCreamLifts extends Component {
     }
   }
 
+  incrementRep(id) {
+    console.log('id inside incrementRep', id)
+    return fetch(`http://localhost:3000/api/sets/increment/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/JSON',
+      },
+    })
+    .then(() => {
+      this.getCurrentSets();
+    })
+  }
+
   incrementTotalWorkouts(t, u) {
     return fetch('http://localhost:3000/user/count', {
       method: 'PUT',
@@ -224,7 +237,7 @@ export default class IceCreamLifts extends Component {
       })
     })
     .then( () => {
-      console.log(this.state)
+      console.log('got current sets', this.state)
     })
   }
 
@@ -322,6 +335,7 @@ export default class IceCreamLifts extends Component {
                   getCurrentSets={this.getCurrentSets.bind(this)}
                   currentSets={this.state.currentSets}
                   weights={this.state.weights}
+                  incrementRep={this.incrementRep.bind(this)}
                 />
               )
             }

@@ -9,7 +9,9 @@ const { getAllSets,
 apiRouter.route('/sets')
   .get(getAllSets, (req, res, next) => res.json(res.allSets))
   .post(getCurrentSets, (req, res, next) => res.json(res.currentSets))
-  .put(incrementSet, (req, res, next) => res.json({message: 'current set incremented'}));
+
+apiRouter.route('/sets/increment/:id')
+.put(incrementSet, (req, res, next) => res.json({message: 'current set incremented'}));
 
 apiRouter.route('/create/A')
   .post(createSetsA, (req, res, next) => res.json({message: 'A sets added'}));
