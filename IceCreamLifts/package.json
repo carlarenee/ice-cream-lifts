@@ -3,14 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-prebuild": "bash ./scripts/deployment_react.sh",
-    "heroku-postbuild": "bash ./scripts/deployment_cleanup.sh",
-    "start": "node server.js"
-  },
-  "main": "server.js",
-  "engines": {
-    "node": "6.6.0"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
@@ -19,16 +13,16 @@
     "express": "^4.14.0",
     "morgan": "^1.7.0",
     "path": "^0.12.7",
-    "pg-promise": "^5.5.0"
+    "pg-promise": "^5.5.0",
+    "react": "15.4.1",
+    "react-native": "0.39.1",
+    "react-timer-mixin": "^0.13.3"
   },
   "devDependencies": {
     "babel-jest": "17.0.2",
     "babel-preset-react-native": "1.9.0",
     "jest": "17.0.3",
-    "react-test-renderer": "15.4.1",
-    "react": "15.4.1",
-    "react-native": "0.39.1",
-    "react-timer-mixin": "^0.13.3"
+    "react-test-renderer": "15.4.1"
   },
   "jest": {
     "preset": "react-native"
