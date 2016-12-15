@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {
   Alert,
+  Image,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
@@ -15,6 +17,7 @@ export default class Signup extends Component {
       signupUpsername: null,
       signupPassword: null,
       signupConfirm: null,
+      behavior: 'padding',
     }
   }
 
@@ -26,7 +29,12 @@ export default class Signup extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior={this.state.behavior} style={styles.container}>
+        <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+          <Image
+            source={require('../images/tiny_arrow.png')}
+          />
+        </TouchableHighlight>
         <Text style={styles.largeWords}>
           Username:
         </Text>
@@ -53,7 +61,7 @@ export default class Signup extends Component {
             Go!
           </Text>
         </TouchableHighlight>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -63,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fafafa'
   },
   largeWords: {
     fontSize: 20,
@@ -81,5 +90,10 @@ const styles = StyleSheet.create({
     width: 240,
     textAlign: 'center',
     backgroundColor: '#addfad',
-  }
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
+  },
 })

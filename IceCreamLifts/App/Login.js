@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   Alert,
-  InteractionManager,
+  Image,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
@@ -15,6 +16,7 @@ export default class Login extends Component {
     this.state = {
       loggedInUser: null,
       totalWorkouts: null,
+      behavior: 'padding',
     }
   }
 
@@ -27,13 +29,20 @@ export default class Login extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+          <Image
+            source={require('../images/tiny_arrow.png')}
+          />
+        </TouchableHighlight>
         <Text style={styles.largeWords}>
           Username:
         </Text>
-        <TextInput style={styles.enterInfo}
-          value={this.state.loginUsername}
-          onChangeText={(loginUsername) => this.props.handleLoginUsername(loginUsername)}
-        />
+        <KeyboardAvoidingView behavior={this.state.behavior}>
+          <TextInput style={styles.enterInfo}
+            value={this.state.loginUsername}
+            onChangeText={(loginUsername) => this.props.handleLoginUsername(loginUsername)}
+          />
+        </KeyboardAvoidingView>
         <Text style={styles.largeWords}>
           Password:
         </Text>
@@ -56,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fafafa'
   },
   largeWords: {
     fontSize: 20,
@@ -74,5 +84,10 @@ const styles = StyleSheet.create({
     width: 240,
     textAlign: 'center',
     backgroundColor: '#addfad',
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
   }
 })

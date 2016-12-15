@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -229,7 +230,14 @@ export default class Workout extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <View style={styles.topNav}></View>
+        <View style={styles.topNav}>
+          <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+            <Image
+              source={require('../images/tiny_arrow.png')}
+            />
+          </TouchableHighlight>
+          <Text style={styles.timer}>Timer</Text>
+        </View>
         <ScrollView style={styles.scrollBox}>
           <View>
             <View style={styles.exerciseHeader}>
@@ -313,23 +321,25 @@ export default class Workout extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fafafa'
   },
   largeWords: {
     fontSize: 20,
   },
   topNav: {
-    height: 100,
-    backgroundColor: 'red',
+    height: 80,
+    backgroundColor: 'skyblue',
   },
   botNav: {
-    height: 100,
-    backgroundColor: 'blue',
+    height: 80,
+    backgroundColor: 'skyblue',
   },
   exercise: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    marginBottom: 35,
   },
   exerciseHeader: {
     height: 50,
@@ -337,5 +347,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
+  },
+  timer: {
+    position: 'absolute',
+    top: 25,
+    right: 25,
+    fontSize: 30,
+    color: '#fafafa'
   }
 })

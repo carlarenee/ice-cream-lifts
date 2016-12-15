@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -42,6 +43,11 @@ export default class Setup extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+          <Image
+            source={require('../images/tiny_arrow.png')}
+          />
+        </TouchableHighlight>
         <Text style={styles.headline}>Choose one to continue:</Text>
         <TouchableHighlight style={{backgroundColor: this.state.selectedNewbieColor}} onPress={this.selectedNewbie.bind(this)}>
           <View style={styles.setupOption}>
@@ -104,5 +110,10 @@ const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 35,
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
   }
 })
